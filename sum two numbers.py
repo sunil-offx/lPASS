@@ -1,20 +1,15 @@
-class Solution:
-    def twoSum(self, nums, target):
-        # Create a dictionary to store numbers and their corresponding indices
-        number_map = {}
-
-        # Loop through the array
-        for i, num in enumerate(nums):
-            # Calculate the difference between the target and the current number
-            diff = target - num
-
-            # Check if the difference already exists in the dictionary
-            if diff in number_map:
-                # If it exists, return the indices of the current number and the number that adds up to the target
-                return [i, number_map[diff]]
-
-            # If it doesn't exist, add the current number and its index to the dictionary
-            number_map[num] = i
-        
-        # If no two numbers add up to the target, return None
-        return None
+int* twoSum(int* nums, int numsSize, int target, int* returnSize) {
+    *returnSize = 2;
+    int* result = (int*)malloc(*returnSize * sizeof(int));
+    for(int i = 0; i < numsSize; i++) {
+        for(int j = i + 1; j < numsSize; j++) {
+            if(nums[i] + nums[j] == target) {
+                result[0] = i;
+                result[1] = j;
+                return result;
+            }
+        }
+    }
+    *returnSize = 0;
+    return NULL;
+}
