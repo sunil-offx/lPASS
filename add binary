@@ -1,0 +1,7 @@
+char * addBinary(char * a, char * b){
+    char *s = calloc(1, 100), *x = a + strlen(a) - 1, *y = b + strlen(b) - 1, c = 0, k = 98, m;
+    for (s[k] = '0' ; x >= a || y >= b || c ; s[k--] = m + '0' - ((c = m > 1) ? 2 : 0))
+        m = c + (x >= a ? *x-- - '0' : 0) + (y >= b ? *y-- - '0' : 0);
+    while ((s[c++] = s[++k]));
+    return s;
+}
