@@ -1,0 +1,22 @@
+bool find(struct ListNode** history, int size, struct ListNode* node);
+bool hasCycle(struct ListNode *head) {
+
+struct ListNode** history= (struct ListNode**)malloc(sizeof(struct ListNode*)*10000);
+int size=0;
+while(head){
+    if(find(history,size,head)){
+        return true;
+    }
+    history[size++]=head;
+    head=head->next;
+}
+return false;
+}
+
+bool find(struct ListNode** history, int size, struct ListNode* node){
+
+for(int i=0;i<size;i++){
+    if(history[i]==node) return true;
+}
+return false;
+}
