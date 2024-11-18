@@ -1,0 +1,14 @@
+int lengthOfLastWord(char* s) {
+    int i=0;
+    int count=0;
+    int len=strlen(s)-1;
+    for(i=len;i>0;i--){
+        if(s[i]==' '){len--;}
+        else{break;}
+    }
+    for(i=len;i>=0;i--){
+        if(s[i]!=' '){count++;}
+        else{break;}
+    }
+    return count;
+}
