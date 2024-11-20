@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+int isSubstring(const char *mainStr, const char *subStr) {
+    int i, j;
+    for (i = 0; mainStr[i] != '\0'; i++) {
+        for (j = 0; subStr[j] != '\0' && mainStr[i + j] == subStr[j]; j++);
+        if (subStr[j] == '\0') {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+int main() {
+    char mainStr[] = "Hello, World!";
+    char subStr[] = "World";
+    printf("Substring exists: %s\n", isSubstring(mainStr, subStr) ? "Yes" : "No");
+    return 0;
+}
