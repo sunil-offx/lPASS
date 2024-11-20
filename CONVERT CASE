@@ -1,0 +1,18 @@
+#include <stdio.h>
+
+void convertCase(char *str) {
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] >= 'a' && str[i] <= 'z') {
+            str[i] -= 32; // Convert to uppercase
+        } else if (str[i] >= 'A' && str[i] <= 'Z') {
+            str[i] += 32; // Convert to lowercase
+        }
+    }
+}
+
+int main() {
+    char str[] = "Hello, World!";
+    convertCase(str);
+    printf("Case converted: %s\n", str);
+    return 0;
+}
