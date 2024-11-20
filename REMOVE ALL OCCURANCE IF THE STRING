@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+void removeCharacter(char *str, char ch) {
+    int i = 0, j = 0;
+    while (str[i] != '\0') {
+        if (str[i] != ch) {
+            str[j++] = str[i];
+        }
+        i++;
+    }
+    str[j] = '\0';
+}
+
+int main() {
+    char str[] = "Hello, World!";
+    char ch = 'o';
+    removeCharacter(str, ch);
+    printf("Modified string: %s\n", str);
+    return 0;
+}
