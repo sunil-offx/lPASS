@@ -1,0 +1,34 @@
+bool isAnagram(char* s, char* t) {
+    
+
+int sizes = sizeof(s) / sizeof(s[0]);
+int sizet = sizeof(t) / sizeof(t[0]);
+
+if (sizet != sizes){
+    return false;
+}
+
+int sum1 = 0;
+int sum2 = 0;
+unsigned long long  multps = 1;
+unsigned long long  multpt = 1;
+
+for (int i = 0; s[i] != '\0'; i++) {  
+    sum1 += (int)s[i];
+    multps *= (int)s[i]; 
+}
+
+for (int j = 0; t[j] != '\0'; j++) {  
+    sum2 += (int)t[j];
+    multpt *= (int)t[j];
+}
+
+
+if (sum1 == sum2 && multpt == multps ){
+    return true;
+}
+
+else {
+    return false;
+}
+}
