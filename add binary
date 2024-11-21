@@ -1,7 +1,17 @@
-char * addBinary(char * a, char * b){
-    char *s = calloc(1, 100), *x = a + strlen(a) - 1, *y = b + strlen(b) - 1, c = 0, k = 98, m;
-    for (s[k] = '0' ; x >= a || y >= b || c ; s[k--] = m + '0' - ((c = m > 1) ? 2 : 0))
-        m = c + (x >= a ? *x-- - '0' : 0) + (y >= b ? *y-- - '0' : 0);
-    while ((s[c++] = s[++k]));
-    return s;
+char* addBinary(char* a, char* b) {
+    int i=strlen(a), j=strlen(b);
+    int aux=0; 
+    int k=fmax(i, j)+2;
+    char* result = (char*) malloc (sizeof(char) * k);
+    
+    result[--k] = '\0';
+    i--; j--;
+    while(--k >= 0){
+        aux += i >= 0 ? a[i--] - '0': 0;
+        aux += j >= 0 ? b[j--] - '0': 0;
+        result[k] = aux % 2 + '0';
+        aux /= 2;
+    }
+    if(result[0] == '0') return result+1;
+    return result;
 }
