@@ -1,34 +1,29 @@
+#include <stdbool.h>
+#include <string.h>
+
 bool isAnagram(char* s, char* t) {
+    int size = strlen(s);
     
+    // Check if lengths are different
+    if (size != strlen(t)) {
+        return false;
+    }
 
-int sizes = sizeof(s) / sizeof(s[0]);
-int sizet = sizeof(t) / sizeof(t[0]);
+    int freqArr[26] = {0}; // Initialize the array to zero
 
-if (sizet != sizes){
-    return false;
-}
+    for (int i = 0; i < size; i++) {
+        freqArr[(int)s[i] - 97]++;
+    }
 
-int sum1 = 0;
-int sum2 = 0;
-unsigned long long  multps = 1;
-unsigned long long  multpt = 1;
+    for (int i = 0; i < size; i++) {
+        freqArr[(int)t[i] - 97]--;
+    }
 
-for (int i = 0; s[i] != '\0'; i++) {  
-    sum1 += (int)s[i];
-    multps *= (int)s[i]; 
-}
+    for (int i = 0; i < 26; i++) {
+        if (freqArr[i] != 0) {
+            return false;
+        }
+    }
 
-for (int j = 0; t[j] != '\0'; j++) {  
-    sum2 += (int)t[j];
-    multpt *= (int)t[j];
-}
-
-
-if (sum1 == sum2 && multpt == multps ){
     return true;
-}
-
-else {
-    return false;
-}
 }
