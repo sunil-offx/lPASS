@@ -1,0 +1,182 @@
+#include<stdio.h>
+#include<string.h>
+
+#define MAX_STUDENTS 100
+#define MAX_NAME_LEN 50
+
+int ids[MAX_STUDENTS];
+char names[MAX_STUDENTS][MAX_NAME_LEN];
+float marks[MAX_STUDENTS];
+int student_count=0;
+
+void addstudent();
+void displaystudents();
+void searchstudent();
+void modifystudent();
+void deletestudent();
+void viewallrecords();
+
+int main(){
+int choice;
+
+while(1){
+
+printf("-----------------------------------------");
+printf("\nStudent Management System\n");
+printf("-----------------------------------------");
+printf("\n1.Add Student\n");
+printf("2.Display Students\n");
+printf("3.Search Student by ID\n");
+printf("4.Modify Student Records\n");
+printf("5.Delete Student Records\n");
+printf("6.Exit\n");
+printf("-----------------------------------------\n");
+printf("Enter your Choice:");
+scanf("%d",&choice);
+switch(choice){
+case 1:
+  addstudent();
+  break;
+case 2:
+  displaystudents();
+  break;
+case 3:
+  searchstudent();
+  break;
+case 4:
+  modifystudent();
+  break;
+case 5:
+  deletestudent();
+  break;
+case 6:
+  printf("Exiting.....");
+  return 0;
+default:
+  printf("Invalid choice! try again..\n");
+}
+
+}
+
+}
+
+
+void addstudent(){
+if(student_count>=MAX_STUDENTS){
+printf("Error:Cannot Add More Students, Maximum Limit Reached.\n");
+return;
+}
+printf("--------------------------------\n");
+
+printf("Enter Student ID:\n");
+scanf("%d",&ids[student_count]);
+printf("Enter a Student Name:\n");
+scanf("%s",&names[student_count]);
+printf("Enter a Grade:\n");
+scanf("%f",&marks[student_count]);
+
+student_count++;
+printf("Student Added Successfully...\n");
+printf("--------------------------------\n");
+
+}
+
+void displaystudents(){
+if(student_count ==0){
+printf("No students Record have to display.!\n");
+return;
+}
+printf("\nList of Students:\n");
+printf("--------------------------------\n");
+printf("ID\tNAME\tGRADE\n");
+printf("--------------------------------\n");
+for(int i=0;i<student_count;i++){
+printf("%d\t%s\t%.2f\n",ids[i],names[i],marks[i]);
+}
+printf("--------------------------------\n");
+
+}
+
+
+void searchstudent(){
+int search_id,found=0;
+
+printf("--------------------------------\n");
+
+printf("Enter a Student ID to Search:");
+scanf("%d",&search_id);
+
+for(int i=0;i<student_count;i++){
+if(ids[i]==search_id){
+printf("\nStudent Found:\n");
+printf("ID:%d\n",ids[i]);
+printf("Name:%s\n",names[i]);
+printf("Grade: %.2f\n", marks[i]);
+printf("--------------------------------\n");
+found=1;
+break;
+}
+}
+if(!found){
+printf("Student with ID%d not Found.\n", search_id);
+}
+}
+
+
+void modifystudent(){
+int modify_id,found=0;
+printf("--------------------------------\n");
+printf("Enter a Student ID to Modify:");
+scanf("%d",&modify_id);
+
+for(int i=0;i<student_count;i++){
+if(ids[i]==modify_id){
+printf("--------------------------------\n");
+printf("\n Student Found\n");
+printf("ID:%d\n",ids[i]);
+printf("Name:%s\n",names[i]);
+printf("Grade:%.2f\n",marks[i]);
+printf("--------------------------------\n");
+printf("--------------------------------\n");
+printf("Enter a New Name:\n");
+scanf("%s",&names[i]);
+printf("Enter a New Grade:\n");
+scanf("%.2f",&marks[i]);
+printf("--------------------------------\n");
+printf("students record is updated successfully....");
+found=1;
+break;
+
+}
+}
+if(!found){
+printf("student with ID %d not found.\n",modify_id);
+}
+}
+
+void deletestudent(){
+int delete_id,found=0;
+
+printf("enter a student ID to delete:");
+scanf("%d",&delete_id);
+for(int i=0;i<student_count;i++){
+if(ids[i]==delete_id){
+found=1;
+
+for(int j=i;j<student_count;j++){
+ids[j]=ids[j+1];
+strcpy(names[j],names[j+1]);
+marks[j]=marks[j+1];
+}
+student_count--;
+printf("--------------------------------\n");
+printf("student record deleted successfully....\n");
+printf("--------------------------------\n");
+break;
+}
+}
+if(!found){
+printf("student with ID %d not found.\n",delete_id);
+}
+}
+
